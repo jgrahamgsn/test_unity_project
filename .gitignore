@@ -1,2 +1,4 @@
 Unity/Library
 Unity/Temp
+*.sln
+*.csproj
