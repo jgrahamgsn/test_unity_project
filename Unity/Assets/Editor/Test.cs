@@ -22,8 +22,16 @@ public static class Test {
 
 	}
 
+	[MenuItem("Test/PostExport")]
 	public static void PostExport() {
 		Debug.Log (" >>> PostExport Method Started");
+		string asset = "Assets/Textures/WikiFun_Police_Smiley.png";
+		Object assetObj = AssetDatabase.LoadMainAssetAtPath (asset);
+		BuildPipeline.BuildAssetBundleExplicitAssetNames(
+			new Object[] { assetObj } ,
+			new string[] { "smile" },
+			"smile.assetbundle"
+		) ;
 		Debug.Log (" >>> PostExport Method Ended");
 	}
 }
