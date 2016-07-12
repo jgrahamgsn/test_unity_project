@@ -3,3 +3,5 @@ Unity/Temp
 *.sln
 *.csproj
 *.userprefs
+obj
+*.log
