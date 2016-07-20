@@ -2,14 +2,15 @@
 using UnityEditor;
 using System.Collections;
 using System.IO;
+using System.Diagnostics;
 
 public static class Test {
 	[MenuItem("Test/PreExport")]
 	public static void PreExport() {
-		Debug.Log (" >>> PreExport Method Started");
-
+		UnityEngine.Debug.Log (" >>> PreExport Method Started");
+		UnityEngine.Debug.Log (" >>> PreExport Process ID: " + Process.GetCurrentProcess().Id);
 		string currentDirectory = Directory.GetCurrentDirectory ();
-		Debug.Log (" >>> Current Directory: " + currentDirectory);
+		UnityEngine.Debug.Log (" >>> Current Directory: " + currentDirectory);
 		string fileClass =
 			"public class Generated { " + "\n" +
 			"    public void Do() {" + "\n" +
@@ -18,13 +19,15 @@ public static class Test {
 			"}";
 		
 		File.WriteAllText("Assets/Generated.cs", fileClass);
-		Debug.Log (" >>> PreExport Method Ended");
+		UnityEngine.Debug.Log (" >>> PreExport Method Ended");
 
 	}
 
 	[MenuItem("Test/PostExport")]
 	public static void PostExport() {
-		Debug.Log (" >>> PostExport Method Started");
+		UnityEngine.Debug.Log (" >>> PostExport Method Started");
+		UnityEngine.Debug.Log (" >>> PostExport Process ID: " + Process.GetCurrentProcess().Id);
+
 		string asset = "Assets/Textures/WikiFun_Police_Smiley.png";
 		Object assetObj = AssetDatabase.LoadMainAssetAtPath (asset);
 		BuildPipeline.BuildAssetBundleExplicitAssetNames(
@@ -32,6 +35,6 @@ public static class Test {
 			new string[] { "smile" },
 			"smile.assetbundle"
 		) ;
-		Debug.Log (" >>> PostExport Method Ended");
+		UnityEngine.Debug.Log (" >>> PostExport Method Ended");
 	}
 }
